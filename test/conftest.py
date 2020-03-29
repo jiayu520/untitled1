@@ -11,3 +11,10 @@ def open():
 
     print("执行teardown！")
     print("最后关闭浏览器")
+
+def pytest_configure(config):
+    maker_list = ["search","login"] #标签名集合
+    for markers in maker_list:
+        config.addinivalue_line(
+            "markers",markers
+        )
