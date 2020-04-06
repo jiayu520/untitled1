@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
+from asyncio import sleep
 
 from test.conftest import Base
 
@@ -17,3 +18,13 @@ class TestJS(Base):
         # for code in ['return document.title','return JSON.stringify(performance.timing)']:
         #     print(self.driver.execute_script(code))
         print(self.driver.execute_script("return document.title;JSON.stringify(performance.timing)"))
+
+
+    def test_datetime(self):
+        self.driver.get("https://www.12306.cn/index/")
+        #self.driver.execute_script("return document.getElementById('train_date')")
+        self.driver.execute_script("document.getElementById('train_date').removeAttribute('readonly')")
+        #移除只读属性
+        self.driver.execute_script("document.getElementById('train_date').value='2020-12-31'")
+        #赋值
+        sleep(3)
